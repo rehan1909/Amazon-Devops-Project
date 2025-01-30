@@ -125,10 +125,6 @@ kubectl delete -f k8s/
 terraform destroy --auto-approve
 ```
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -137,9 +133,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 4. Push to the branch
 5. Open a pull request
 
-## 📞 Support
+## 📞 Contact 
 
-For support, please open an issue in the GitHub repository or contact the maintainers.
+For contact mail:mohdrihan1909@gmail.com
 
 ---
 ⭐ Star this repository if you find it helpful!
