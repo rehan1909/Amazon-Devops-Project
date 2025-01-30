@@ -159,27 +159,7 @@ resource "aws_instance" "my-ec2" {
     }
 
     inline = [
-      # Install AWS CLI
-      # Ref: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
-      "sudo apt install unzip -y",
-      "curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip'",
-      "unzip awscliv2.zip",
-      "sudo ./aws/install",
-
-      # Install Docker
-      # Ref: https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
-      "sudo apt-get update -y",
-      "sudo apt-get install -y ca-certificates curl",
-      "sudo install -m 0755 -d /etc/apt/keyrings",
-      "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc",
-      "sudo chmod a+r /etc/apt/keyrings/docker.asc",
-      "echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null",
-      "sudo apt-get update -y",
-      "sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin",
-      "sudo usermod -aG docker ubuntu",
-      "sudo chmod 777 /var/run/docker.sock",
-      "docker --version",
-
+      
       # Install SonarQube (as container)
       "docker run -d --name sonar -p 9000:9000 sonarqube:lts-community",
 
@@ -204,14 +184,6 @@ resource "aws_instance" "my-ec2" {
       "sudo chmod +x /usr/local/bin/kubectl",
       "kubectl version --client",
 
-      # Install Helm
-      # Ref: https://helm.sh/docs/intro/install/
-      # Ref (for .tar.gz file): https://github.com/helm/helm/releases
-      "wget https://get.helm.sh/helm-v3.16.1-linux-amd64.tar.gz",
-      "tar -zxvf helm-v3.16.1-linux-amd64.tar.gz",
-      "sudo mv linux-amd64/helm /usr/local/bin/helm",
-      "helm version",
-
       # Install ArgoCD
       # Ref: https://argo-cd.readthedocs.io/en/stable/cli_installation/
       "VERSION=$(curl -L -s https://raw.githubusercontent.com/argoproj/argo-cd/stable/VERSION)",
@@ -225,22 +197,7 @@ resource "aws_instance" "my-ec2" {
       "sudo apt install openjdk-17-jdk openjdk-17-jre -y",
       "java -version",
 
-      # Install Jenkins
-      # Ref: https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
-      "sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key",
-      "echo \"deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/\" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null",
-      "sudo apt-get update -y",
-      "sudo apt-get install -y jenkins",
-      "sudo systemctl start jenkins",
-      "sudo systemctl enable jenkins",
-
-      # Get Jenkins initial login password
-      "ip=$(curl -s ifconfig.me)",
-      "pass=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)",
-
       # Output
-      "echo 'Access Jenkins Server here --> http://'$ip':8080'",
-      "echo 'Jenkins Initial Password: '$pass''",
       "echo 'Access SonarQube Server here --> http://'$ip':9000'",
       "echo 'SonarQube Username & Password: admin'",
     ]
