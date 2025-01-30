@@ -135,7 +135,7 @@ terraform destroy --auto-approve
 
 ## 📞 Contact 
 
-For contact mail:mohdrihan1909@gmail.com
+For contact mail: mohdrihan1909@gmail.com
 
 ---
 ⭐ Star this repository if you find it helpful!
