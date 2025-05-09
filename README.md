@@ -2,7 +2,7 @@
 
 A production-ready DevOps pipeline implementation for deploying an Amazon Prime clone, showcasing modern DevOps practices and tools integration.
 
-![DevOps Pipeline](./src/Overview.png)
+
 
 ## ✨ Features
 
